@@ -99,13 +99,7 @@ This project is licensed under the **MIT License** — free to use, modify, and 
 
 1. 🐛 **أبلغ عن خطأ**: افتح [Issue جديد](https://github.com/h-phsoft/magic-square-3x3/issues/new?template=bug_report.md)  
 2. 💡 **اقتراح ميزة**: افتح [Issue جديد](https://github.com/h-phsoft/magic-square-3x3/issues/new?template=feature_request.md)  
-3. 🛠️ **أرسل تعديلات**:  
-   - فرّع المستودع (Fork)  
-   - أنشئ فرعًا جديدًا (`git checkout -b feature/your-feature`)  
-   - أجرِ التعديلات  
-   - أرسل Pull Request
 
-> 📌 لا تنسَ كتابة وصف واضح لكل تغيير!
 
 ---
 
