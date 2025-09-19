@@ -145,4 +145,3 @@ This project is intended **for educational, research, and programming purposes o
 - Harmful or abusive in any form.
 
 Your use of this project implies acceptance of these terms.
-
