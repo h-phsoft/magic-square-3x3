@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعمير الوفق المثلث</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .magic-square {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            margin: 20px auto;
+            direction: ltr;
+        }
+        .magic-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #f8f9fa;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .key { background-color: #ffc107 !important; border-color: #ff9800; color: #000; }
+        .ghalaq { background-color: #ff9e9e !important; border-color: #f44336; color: #000; }
+        .middle { background-color: #8fd1a8 !important; border-color: #4caf50; color: #000; }
+        .fraction-fix { background-color: #d1a8f5 !important; border-color: #9c27b0; color: #000; font-weight: bold; }
+
+        .result-section {
+            margin-top: 30px;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+        .info-item {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .card-header h4 {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4>أنشئ وفقك المثلث</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <input type="number" id="targetSum" class="form-control text-center" placeholder="أدخل الرقم هنا" required>
+                        </div>
+                        <div class="d-grid">
+                            <button id="generateBtn" class="btn btn-success">أنشئ الوفق</button>
+                        </div>
+
+                        <div id="result" class="result-section text-center d-none">
+                            <div id="magicSquare" class="magic-square"></div>
+                            <div class="info-box mt-4">
+                                <div class="info-item">
+                                    <strong>🔑 المفتاح:</strong> <span id="keyValue" class="fw-bold"></span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>🔒 المغلاق:</strong> <span id="ghalaqValue" class="fw-bold"></span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>🎯 الوسط:</strong> <span id="middleValue" class="fw-bold"></span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>🟣 جبر الكسر:</strong> <span id="fractionValue" class="fw-bold"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            // ✅ تعريف مواقع الخانات — بما فيها "جبر الكسر" = موقع الرقم 7 في الوفق الأساسي
+            const positions = {
+                key:        { row: 2, col: 1, name: "المفتاح" },
+                ghalaq:     { row: 0, col: 1, name: "المغلاق" },
+                middle:     { row: 1, col: 1, name: "الوسط" },
+                fractionFix: { row: 1, col: 2, name: "جبر الكسر" } // ← هنا كان الرقم 7 في الوفق الأساسي
+            };
+
+            // ترتيب ملء الخانات بعد المفتاح
+            const fillOrder = [
+                [0,2], // → 2
+                [1,0], // → 3
+                [0,0], // → 4
+                [1,1], // → 5
+                [2,2], // → 6
+                [1,2], // → 7 ← هذه خانة جبر الكسر!
+                [2,0], // → 8
+                [0,1]  // → 9
+            ];
+
+            function generateMagicSquare(inputNumber) {
+                const base = Math.floor((inputNumber - 12) / 3);
+                const remainder = (inputNumber - 12) % 3;
+
+                const square = Array(3).fill().map(() => Array(3).fill(0));
+                square[positions.key.row][positions.key.col] = base;
+
+                let currentValue = base;
+                for (let i = 0; i < fillOrder.length; i++) {
+                    const [row, col] = fillOrder[i];
+                    
+                    // ✅ نضيف 1 دائمًا أولاً
+                    currentValue += 1;
+                    
+                    // ✅ إذا كانت هذه خانة جبر الكسر ووجد باقي — نضيف الباقي فوق الواحد
+                    if (row === positions.fractionFix.row && col === positions.fractionFix.col && remainder > 0) {
+                        currentValue += remainder;
+                    }
+
+                    square[row][col] = currentValue;
+                }
+
+                return {
+                    square: square,
+                    key: square[positions.key.row][positions.key.col],
+                    ghalaq: square[positions.ghalaq.row][positions.ghalaq.col],
+                    middle: square[positions.middle.row][positions.middle.col],
+                    fraction: remainder,
+                    fractionCellValue: square[positions.fractionFix.row][positions.fractionFix.col]
+                };
+            }
+
+            function renderMagicSquare(square, key, ghalaq, middle, fraction, fractionCellValue) {
+                const $container = $('#magicSquare').empty();
+                
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        const $cell = $('<div class="magic-cell">').text(square[i][j]);
+                        
+                        if (i === positions.key.row && j === positions.key.col) {
+                            $cell.addClass('key');
+                        } else if (i === positions.ghalaq.row && j === positions.ghalaq.col) {
+                            $cell.addClass('ghalaq');
+                        } else if (i === positions.middle.row && j === positions.middle.col) {
+                            $cell.addClass('middle');
+                        } else if (i === positions.fractionFix.row && j === positions.fractionFix.col && fraction > 0) {
+                            $cell.addClass('fraction-fix'); // ✅ لون مميز إذا كان هناك جبر
+                        }
+                        
+                        $container.append($cell);
+                    }
+                }
+
+                $('#keyValue').text(key);
+                $('#ghalaqValue').text(ghalaq);
+                $('#middleValue').text(middle);
+                $('#fractionValue').text(fraction > 0 ? `${fraction} (القيمة النهائية: ${fractionCellValue})` : "0");
+
+                $('#result').removeClass('d-none');
+            }
+
+            $('#generateBtn').on('click', function() {
+                const input = $('#targetSum').val().trim();
+                const inputNumber = parseInt(input);
+
+                if (isNaN(inputNumber)) {
+                    alert("الرجاء إدخال عدد صحيح.");
+                    return;
+                }
+
+                if (inputNumber < 12) {
+                    alert("الرقم يجب أن يكون 12 أو أكبر.");
+                    return;
+                }
+
+                const result = generateMagicSquare(inputNumber);
+                renderMagicSquare(
+                    result.square,
+                    result.key,
+                    result.ghalaq,
+                    result.middle,
+                    result.fraction,
+                    result.fractionCellValue
+                );
+            });
+
+            $('#targetSum').on('keypress', function(e) {
+                if (e.which === 13) {
+                    $('#generateBtn').click();
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
