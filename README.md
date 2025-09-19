@@ -74,7 +74,6 @@
 
 ### الخطوة 1: استنساخ المستودع (إذا لم تكن قد فعلت)
 
-```bash
 git clone https://github.com/h-phsoft/magic-square-3x3.git
 cd magic-square-3x3
 
