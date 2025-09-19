@@ -77,3 +77,73 @@
 ```bash
 git clone https://github.com/h-phsoft/magic-square-3x3.git
 cd magic-square-3x3
+
+---
+
+## 📜 الترخيص / License
+
+هذا المشروع مرخص تحت رخصة **MIT** — مفتوح المصدر للاستخدام الشخصي والتجاري.  
+✅ يمكنك: الاستخدام، التعديل، التوزيع — حتى تجاريًا — مع الإبقاء على حقوق الملكية.
+
+This project is licensed under the **MIT License** — free to use, modify, and distribute — even commercially — as long as you preserve the copyright notice.
+
+📄 [عرض نص الرخصة الكاملة](LICENSE)
+
+---
+
+## 🤝 المساهمة / Contributing
+
+نرحب بالمساهمات! ❤️  
+سواء كنت مطورًا، مصممًا، أو محررًا — مشاركتك تهمنا.
+
+### كيف تساهم؟
+
+1. 🐛 **أبلغ عن خطأ**: افتح [Issue جديد](https://github.com/h-phsoft/magic-square-3x3/issues/new?template=bug_report.md)  
+2. 💡 **اقتراح ميزة**: افتح [Issue جديد](https://github.com/h-phsoft/magic-square-3x3/issues/new?template=feature_request.md)  
+3. 🛠️ **أرسل تعديلات**:  
+   - فرّع المستودع (Fork)  
+   - أنشئ فرعًا جديدًا (`git checkout -b feature/your-feature`)  
+   - أجرِ التعديلات  
+   - أرسل Pull Request
+
+> 📌 لا تنسَ كتابة وصف واضح لكل تغيير!
+
+---
+
+## 📬 التواصل / Contact
+
+لأي استفسار أو اقتراح — نحن هنا لمساعدتك:
+
+📧 **البريد الإلكتروني**: [h.phsoft@gmail.com](mailto:h.phsoft@gmail.com)  
+🐙 **GitHub**: [@h-phsoft](https://github.com/h-phsoft)  
+🌍 **المشروع الحي**: [h-phsoft.github.io/magic-square-3x3](https://h-phsoft.github.io/magic-square-3x3/)
+
+> "الوفق علم قديم — نعيد إحيائه بتقنية حديثة."  
+> "The Magic Square is ancient wisdom — revived with modern tech."
+
+---
+
+## 📜 سياسة الاستخدام / Usage Policy
+
+هذا المشروع مخصص **للأغراض التعليمية، البحثية، والبرمجية فقط**.  
+❌ **ممنوع تمامًا** استخدامه لأي غرض:
+
+- مخالف للقوانين المحلية أو الدولية.
+- يُشجع على الكراهية، التمييز، أو ازدراء الأديان.
+- تجاري دون إذن مسبق من المؤلف.
+- ضار أو مسيء بأي شكل.
+
+استخدامك لهذا المشروع يعني موافقتك على هذه الشروط.
+
+---
+
+This project is intended **for educational, research, and programming purposes only**.  
+❌ **Strictly prohibited** to use it for any purpose that:
+
+- Violates local or international laws.
+- Promotes hate, discrimination, or religious disrespect.
+- Commercial use without prior written permission.
+- Harmful or abusive in any form.
+
+Your use of this project implies acceptance of these terms.
+
