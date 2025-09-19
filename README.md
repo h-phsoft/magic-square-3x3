@@ -9,7 +9,12 @@
 > A web tool to generate a custom 3×3 Magic Triangle Square — with Fraction Fix, Key, Lock, and Center support.
 
 تم تطوير هذا المشروع بواسطة [h-phsoft](https://github.com/h-phsoft).
-
+---
+<div align="center">
+  <img src="screenshot.png" alt="مخطط فلكي" width="500" style="border-radius: 12px; border: 1px solid #0077b6;">
+  <br><br>
+  <strong>تعمير الوفق المثلث (3×3) / Magic Triangle Square Generator</strong>
+</div>
 ---
 
 ## 🌐 العرض التجريبي المباشر / Live Demo
